@@ -8,7 +8,7 @@ class WeightedQuickUnion {
 
         for (let i = 0; i < n; i++) {
             this.data[i] = i;
-            this.size[i] = 0;
+            this.size[i] = 1;
         }
     }
 
@@ -23,14 +23,20 @@ class WeightedQuickUnion {
     union(p, q) {
         const rootp = this.root(p);
         const rootq = this.root(q);
+
+        if (rootp === rootq) {
+            return;
+        }
+
         const sizeRootP = this.size[rootp];
         const sizeRootQ = this.size[rootq];
-        if (sizeRootP > sizeRootQ) {
-            this.data[rootq] = rootp;
-            this.size[rootq] += rootp;
-        } else {
+
+        if (sizeRootP < sizeRootQ) {
             this.data[rootp] = rootq;
-            this.size[rootp] += rootq;
+            this.size[rootq] += this.size[rootp];
+        } else {
+            this.data[rootq] = rootp;
+            this.size[rootp] += this.size[rootq];
         }
     }
 
