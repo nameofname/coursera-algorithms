@@ -8,6 +8,10 @@
   "license": "MIT",
   "dependencies": {
     "chai": "^3.5.0",
+    "glob": "^7.1.1",
     "mocha": "^3.3.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
   }
 }
