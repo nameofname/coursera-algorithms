@@ -24,14 +24,7 @@ describe('Social Network Connectivity', () => {
             sn.union(randomPairings[i].pair[0], randomPairings[i].pair[1]);
             i++;
         }
-        console.log(sn.largest)
-        console.log(i)
-        console.log(i)
-        console.log(i)
-        console.log(i)
-        console.log(i)
-        console.log(randomPairings[i])
-
+        expect(i).to.equal(106);
     });
 
 
