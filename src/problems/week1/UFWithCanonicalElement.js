@@ -2,24 +2,15 @@
 
 
 /**
- * Union-find with specific canonical element. Add a method 𝚏𝚒𝚗𝚍() to the union-find data type so that 𝚏𝚒𝚗𝚍(𝚒) returns
+ * QUESTION: Union-find with specific canonical element. Add a method 𝚏𝚒𝚗𝚍() to the union-find data type so that 𝚏𝚒𝚗𝚍(𝚒) returns
  * the largest element in the connected component containing i. The operations, 𝚞𝚗𝚒𝚘𝚗(), 𝚌𝚘𝚗𝚗𝚎𝚌𝚝𝚎𝚍(), and 𝚏𝚒𝚗𝚍() should
  * all take logarithmic time or better.
- */
-"use strict";
-
-/**
- * QUESTION: Social network connectivity. Given a social network containing n members and a log file containing m timestamps at
- * which times pairs of members formed friendships, design an algorithm to determine the earliest time at which all
- * members are connected (i.e., every member is a friend of a friend of a friend ... of a friend). Assume that the log
- * file is sorted by timestamp and that friendship is an equivalence relation. The running time of your algorithm
- * should be mlogn or better and use extra space proportional to n.
  *
  * ANSWER:
- * - Start with a Weighted Quick Union class
- * - modify the union method to store the larger size of the 2 sizes calculated
- * - if the largest size created in the union command is the same as N - then all the friends in the network are
- *      connected (ie. in 1 connected component)
+ *  - Make another property of the UF class called largest
+ *  - it should be an array mapping a root node to the largest node in that connected component
+ *  - it should start out identical to the ID array
+ *  - as you connect more and more components, you take the larger of the 2 largest nodes and assign that to the largest node of the root of the new connected component
  */
 class SocialNetworkConnectivity {
 
@@ -30,6 +21,7 @@ class SocialNetworkConnectivity {
 
         for (let i = 0; i < n; i++) {
             this.data[i] = i;
+            this.largestElementInRoot[i] = i;
             this.size[i] = 1;
         }
     }
@@ -46,8 +38,11 @@ class SocialNetworkConnectivity {
         const rootp = this.root(p);
         const rootq = this.root(q);
         const larger = p < q ? p : q;
-
-        // TODO!!!!!! here when we union - assign the largest to the new largestAt array in the correct spots.
+        const largestp = this.largestElementInRoot[rootp];
+        const largestq = this.largestElementInRoot[rootq];
+        const largest = [larger, largestp, largestq].reduce((prev, curr) => {
+            return prev > curr ? prev : curr;
+        }, 0);
 
         if (rootp === rootq) {
             return;
@@ -59,14 +54,22 @@ class SocialNetworkConnectivity {
         if (sizeRootP < sizeRootQ) {
             this.data[rootp] = rootq;
             this.size[rootq] += this.size[rootp];
+            this.largestElementInRoot[rootq] = largest;
         } else {
             this.data[rootq] = rootp;
             this.size[rootp] += this.size[rootq];
+            this.largestElementInRoot[rootp] = largest;
         }
+
     }
 
     connected(p, q) {
         return this.root(p) === this.root(q);
+    }
+
+    findLargestInComponent(n) {
+        const root = this.root(n);
+        return this.largestElementInRoot[root];
     }
 }
 
