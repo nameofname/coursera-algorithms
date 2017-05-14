@@ -20,9 +20,8 @@ describe('Social Network Connectivity', () => {
         let i = 0;
         const sn = new SocialNetworkConnectivity(n);
 
-        while (sn.largest < n && i < n) {
+        while (sn.largest < n && i < randomPairings.length) {
             sn.union(randomPairings[i].pair[0], randomPairings[i].pair[1]);
-            // console.log(sn.largest)
             i++;
         }
         console.log(sn.largest)
@@ -31,6 +30,7 @@ describe('Social Network Connectivity', () => {
         console.log(i)
         console.log(i)
         console.log(i)
+        console.log(randomPairings[i])
 
     });
 
