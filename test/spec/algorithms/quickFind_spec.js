@@ -2,8 +2,8 @@
 
 
 const expect = require('chai').expect;
-const QuickFind = require('../../src/quickFind');
-const example1 = require('../helpers/unionFindEx1');
+const QuickFind = require('../../../src/algorithms/quickFind');
+const example1 = require('../../helpers/unionFindEx1');
 
 describe('Quick Find', () => {
 

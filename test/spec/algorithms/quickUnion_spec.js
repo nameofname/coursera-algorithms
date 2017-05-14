@@ -2,8 +2,8 @@
 
 
 const expect = require('chai').expect;
-const QuickUnion = require('../../src/quickUnion');
-const example1 = require('../helpers/unionFindEx1');
+const QuickUnion = require('../../../src/algorithms/quickUnion');
+const example1 = require('../../helpers/unionFindEx1');
 
 describe('Quick Union', () => {
 

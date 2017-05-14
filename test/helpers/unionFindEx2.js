@@ -29,7 +29,7 @@ module.exports = {
             depth++;
         }
         return depth;
-    }
+    },
 
     test: (ufInstance) => {
         expect(ufInstance.connected(1, 2)).to.equal(true);

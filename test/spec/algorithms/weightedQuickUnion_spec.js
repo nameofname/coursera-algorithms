@@ -2,11 +2,11 @@
 
 
 const expect = require('chai').expect;
-const timer = require('../helpers/timer');
+const timer = require('../../helpers/timer');
 // const QuickUnion = require('../../src/quickUnion');
-const WeightedQuickUnion = require('../../src/weightedQuickUnion');
-const example1 = require('../helpers/unionFindEx1');
-const example2 = require('../helpers/unionFindEx2');
+const WeightedQuickUnion = require('../../../src/algorithms/weightedQuickUnion');
+const example1 = require('../../helpers/unionFindEx1');
+const example2 = require('../../helpers/unionFindEx2');
 
 describe('Weighted Quick Union', () => {
 
