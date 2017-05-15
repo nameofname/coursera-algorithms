@@ -31,6 +31,24 @@ describe.only("Percolation", () => {
         expect(p.numberOfOpenSites()).to.equal(3);
     });
 
+    it("should return true for is open if the site has been opened, false if not", () => {
+        const p = new Percolation(3);
+        p.open(1, 1);
+        p.open(2, 2);
+        p.open(2, 3);
+        p.open(3, 1);
+
+        expect(p.isOpen(1, 1)).to.equal(true);
+        expect(p.isOpen(1, 2)).to.equal(false);
+        expect(p.isOpen(1, 3)).to.equal(false);
+        expect(p.isOpen(2, 1)).to.equal(false);
+        expect(p.isOpen(2, 2)).to.equal(true);
+        expect(p.isOpen(2, 3)).to.equal(true);
+        expect(p.isOpen(3, 1)).to.equal(true);
+        expect(p.isOpen(3, 2)).to.equal(false);
+        expect(p.isOpen(3, 3)).to.equal(false);
+    });
+
     it("should correctly say that the grid percolates if you open all the sites in a column", () => {
         let p = new Percolation(5);
         expect(p.percolates()).to.equal(false);
