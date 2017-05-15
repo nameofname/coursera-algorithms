@@ -32,7 +32,7 @@ describe.only("Percolation", () => {
     });
 
     it("should correctly say that the grid percolates if you open all the sites in a column", () => {
-        const p = new Percolation(5);
+        let p = new Percolation(5);
         expect(p.percolates()).to.equal(false);
         p.open(1, 1);
         p.open(2, 1);
@@ -40,6 +40,25 @@ describe.only("Percolation", () => {
         p.open(4, 1);
         p.open(5, 1);
         expect(p.percolates()).to.equal(true);
+
+        p = new Percolation(5);
+        expect(p.percolates()).to.equal(false);
+        p.open(1, 5);
+        p.open(2, 5);
+        p.open(3, 5);
+        p.open(4, 5);
+        p.open(5, 5);
+        expect(p.percolates()).to.equal(true);
+    });
+
+    it("should say that the grid does not percolates if you don't connect the bottom and top", () => {
+        const p = new Percolation(5);
+        expect(p.percolates()).to.equal(false);
+        p.open(1, 1);
+        p.open(2, 1);
+        p.open(4, 1);
+        p.open(5, 1);
+        expect(p.percolates()).to.equal(false);
     });
 
 });
