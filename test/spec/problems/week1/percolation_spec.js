@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const Percolation = require('../../../../src/problems/week1/percolation');
 const timer = require('../../../helpers/timer');
 
-describe.only("Percolation", () => {
+describe("Percolation", () => {
 
     it("should correctly calculate the size of the set", () => {
         const p = new Percolation(5);
