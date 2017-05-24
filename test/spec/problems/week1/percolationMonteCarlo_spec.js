@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const percolationMonteCarlo = require('../../../../src/problems/week1/percolationMonteCarlo');
 const timer = require('../../../helpers/timer');
 
-describe.only("Percolation Monte Carlo", () => {
+describe("Percolation Monte Carlo", () => {
 
     it("should should produce an answer to the percolation threshold that is close to 0.5927", () => {
         const n = 10;
