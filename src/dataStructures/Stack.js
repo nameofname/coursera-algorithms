@@ -1,16 +1,29 @@
 "use strict";
 
+class Node {
+    constructor({ item, next }) {
+        this.item = item || null;
+        this.next = next || null;
+    }
+}
+
+/**
+ * Linked list implementation for a motherfucking stack.
+ */
 class Stack {
     constructor() {
-        this.arr = [];
+        this.first = null;
     }
 
     push (e) {
-        return this.arr.push(e);
+        const oldFirst = this.first;
+        this.first = new Node({next: oldFirst, item: e});
     }
 
-    pop (e) {
-        return this.arr.pop();
+    pop () {
+        const oldFirst = this.first;
+        this.first = oldFirst.next;
+        return oldFirst.item;
     }
 }
 
