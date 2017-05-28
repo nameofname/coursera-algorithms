@@ -2,7 +2,7 @@
 
 
 const expect = require('chai').expect;
-const LinkedListStack = require('../../../src/dataStructures/LinkedListStack');
+const Stack = require('../../../src/dataStructures/Stack');
 
 const stackTestClient = (Constructor, inputs) => {
     const stack = new Constructor();
@@ -46,7 +46,7 @@ const allTests = (Constructor) => {
 describe('Stack', () => {
 
     describe('Linked List Stack', () => {
-        allTests(LinkedListStack);
+        allTests(Stack);
     });
 
 });
