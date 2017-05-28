@@ -15,12 +15,16 @@ class Stack {
         this.first = null;
     }
 
-    push (e) {
+    isEmpty() {
+        return this.first === null;
+    }
+
+    push(e) {
         const oldFirst = this.first;
         this.first = new Node({next: oldFirst, item: e});
     }
 
-    pop () {
+    pop() {
         const oldFirst = this.first;
         this.first = oldFirst.next;
         return oldFirst.item;
