@@ -49,6 +49,9 @@ class Stack {
 
     removeFirst() {
         const oldFirst = this.first;
+        if (!oldFirst) {
+            throw new Error('attempted to removeFirst from empty dequeue');
+        }
         this.first = oldFirst.next;
         if (this.first === null) {
             this.last = null;
@@ -58,6 +61,9 @@ class Stack {
 
     removeLast() {
         const oldLast = this.last;
+        if (!oldLast) {
+            throw new Error('attempted to removeLast from empty dequeue');
+        }
         this.last = oldLast.previous;
         if (this.last === null) {
             this.first = null;
