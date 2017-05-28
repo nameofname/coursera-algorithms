@@ -1,9 +1,10 @@
 "use strict";
 
 class Node {
-    constructor({ item, next }) {
-        this.item = item || null;
+    constructor({ value, next, previous }) {
+        this.value = value || null;
         this.next = next || null;
+        this.previous = previous || null;
     }
 }
 
@@ -12,31 +13,58 @@ class Node {
  */
 class Stack {
     constructor() {
-        this.head = null;
-        this.tail = null;
+        this.first = null;
+        this.last = null;
     }
 
     isEmpty() {
-        return this.head === null;
+        return this.first === null;
     }
 
-    enqueue(e) {
-        const oldHead = this.head;
-        this.head = new Node({next: null, item: e});
-        if (oldHead) {
-            oldHead.next = this.head;
+    addFirst(value) {
+        const oldFirst = this.first;
+        this.first = new Node({
+            next: oldFirst,
+            previous: null,
+            value
+        });
+        if (oldFirst) {
+            oldFirst.previous = this.first;
         }
-        this.tail = (this.tail === null) ? this.head : this.tail;
+        this.last = (this.last === null) ? this.first : this.last;
     }
 
-    dequeue() {
-        const oldTail = this.tail;
-        this.tail = oldTail.next;
-        if (this.tail === null) {
-            this.head = null;
+    addLast(value) {
+        const oldLast = this.last;
+        this.last = new Node({
+            next: null,
+            previous: oldLast,
+            value
+        });
+        if (oldLast) {
+            oldLast.next = this.last;
         }
-        return oldTail.item;
+        this.first = (this.first === null) ? this.last : this.first;
     }
+
+    removeFirst() {
+        const oldFirst = this.first;
+        this.first = oldFirst.next;
+        if (this.first === null) {
+            this.last = null;
+        }
+        return oldFirst.value;
+    }
+
+    removeLast() {
+        const oldLast = this.last;
+        this.last = oldLast.previous;
+        if (this.last === null) {
+            this.first = null;
+        }
+        return oldLast.value;
+    }
+
 }
 
 module.exports = Stack;
