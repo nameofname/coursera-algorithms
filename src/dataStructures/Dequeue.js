@@ -8,7 +8,7 @@ class Node {
     }
 }
 
-class Stack {
+class Dequeue {
     constructor() {
         this.first = null;
         this.last = null;
@@ -79,4 +79,4 @@ class Stack {
 
 }
 
-module.exports = Stack;
+module.exports = Dequeue;
