@@ -8,7 +8,7 @@ class Node {
 }
 
 /**
- * Linked list implementation for a motherfucking stack.
+ * Linked list implementation for Queue.
  */
 class Stack {
     constructor() {

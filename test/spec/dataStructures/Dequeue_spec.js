@@ -14,6 +14,8 @@ describe('Dequeue', () => {
         expect(dequeue.addLast).to.be.instanceOf(Function);
         expect(dequeue.removeFirst).to.be.instanceOf(Function);
         expect(dequeue.removeLast).to.be.instanceOf(Function);
+        expect(dequeue.size).to.be.instanceOf(Function);
+        expect(dequeue.isEmpty).to.be.instanceOf(Function);
         expect(dequeue.isEmpty).to.be.instanceOf(Function);
     });
 

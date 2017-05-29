@@ -8,17 +8,19 @@ class Node {
     }
 }
 
-/**
- * Linked list implementation for a motherfucking stack.
- */
 class Stack {
     constructor() {
         this.first = null;
         this.last = null;
+        this.num = 0;
     }
 
     isEmpty() {
-        return this.first === null;
+        return this.num === 0;
+    }
+
+    size() {
+        return this.num;
     }
 
     addFirst(value) {
@@ -32,6 +34,7 @@ class Stack {
             oldFirst.previous = this.first;
         }
         this.last = (this.last === null) ? this.first : this.last;
+        this.num++;
     }
 
     addLast(value) {
@@ -45,29 +48,32 @@ class Stack {
             oldLast.next = this.last;
         }
         this.first = (this.first === null) ? this.last : this.first;
+        this.num++;
     }
 
     removeFirst() {
-        const oldFirst = this.first;
-        if (!oldFirst) {
+        if (this.isEmpty()) {
             throw new Error('attempted to removeFirst from empty dequeue');
         }
+        const oldFirst = this.first;
         this.first = oldFirst.next;
         if (this.first === null) {
             this.last = null;
         }
+        this.num--;
         return oldFirst.value;
     }
 
     removeLast() {
-        const oldLast = this.last;
-        if (!oldLast) {
+        if (this.isEmpty()) {
             throw new Error('attempted to removeLast from empty dequeue');
         }
+        const oldLast = this.last;
         this.last = oldLast.previous;
         if (this.last === null) {
             this.first = null;
         }
+        this.num--;
         return oldLast.value;
     }
 
