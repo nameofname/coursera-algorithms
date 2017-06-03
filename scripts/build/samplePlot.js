@@ -46,8 +46,7 @@
 
 	"use strict";
 
-	const Plot = __webpack_require__(1).Plot;
-	const plot = new Plot();
+	const { Plot, LinePlot } = __webpack_require__(1);
 	const points = [
 	    [1,2],
 	    [2,1],
@@ -58,28 +57,28 @@
 	    [4,1]
 	];
 
-	plot
-	    .data(points.map((p, idx) => ({
-	        x: p[0],
-	        y: p[1],
-	        id: idx
-	    })))
-	    .render();
+	const renderPoints = () => {
+	    new Plot()
+	        .data(points.map((p, idx) => ({
+	            x: p[0],
+	            y: p[1],
+	            id: idx
+	        })))
+	        .render();
+	};
 
+	const renderLines = () => {
+	    new LinePlot()
+	        .data(points.map((p, idx) => ({
+	            x: p[0],
+	            y: p[1],
+	            id: Math.random() > 0.5 ? 'a' : 'b'
+	        })))
+	        .render();
+	};
 
-
-	// var data = [
-	//     {x: 4, y:  7},
-	//     {x: 5, y:  2},
-	//     {x: 6, y: 13}
-	// ];
-	//
-	// new Plot()
-	//     .data(data)
-	//     .groupBy("id")
-	//     .render();
-	//
-
+	renderLines();
+	renderPoints();
 
 /***/ },
 /* 1 */

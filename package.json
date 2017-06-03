@@ -15,6 +15,6 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "graph": "webpack scripts/samplePlot.js scripts/build/samplePlot.js"
+    "graph": "webpack --watch scripts/samplePlot.js scripts/build/samplePlot.js"
   }
 }
