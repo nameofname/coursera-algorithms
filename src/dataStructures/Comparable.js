@@ -1,6 +1,9 @@
 "use strict";
 
 
+/**
+ * An interface that describes how to sort by some natural order, such as numeric positive integers or alphabetically
+ */
 class Comparable {
 
     constructor(value) {
