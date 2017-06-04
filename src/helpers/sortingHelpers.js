@@ -24,6 +24,14 @@ module.exports = {
         return false;
     },
 
+    greater: (testGreater, testee) => {
+        compares++; // Increment the number of compares here so that we can evaluate efficiency of programs
+        if (testGreater.compareTo(testee) > 0) {
+            return true;
+        }
+        return false;
+    },
+
     isSorted: arr => {
         for (let i = 0; i < arr.length - 1; i++) {
             if (arr[i].compareTo(arr[i+1]) === 1) {

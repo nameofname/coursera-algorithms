@@ -11,7 +11,7 @@ const testArr = [1,2,3,4,5,4,3,2,8,7,6,4,3,1,3,4,6,9,8,1,2,3];
 let testComparable;
 
 
-describe.only("Sorting Algorithms", () => {
+describe("Sorting Algorithms", () => {
 
     beforeEach(() => {
         testComparable = testArr.map(v => new Int(v));

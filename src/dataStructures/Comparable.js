@@ -27,5 +27,6 @@ class Comparable {
 class Int extends Comparable {}
 
 module.exports = {
+    Comparable,
     Int
 };
