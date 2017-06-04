@@ -11,6 +11,7 @@ class Comparable {
      * To be over-ridden on a per-type basis.
      */
     compareTo(comparable) {
+        console.log(this, comparable)
         if (this.value < comparable.value) {
             return -1;
         } else if (comparable.value < this.value) {
