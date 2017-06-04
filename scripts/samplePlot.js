@@ -1,7 +1,7 @@
 "use strict";
 
 const { Plot, LinePlot } = require('d3plus-plot');
-const points = [
+let points = [
     [1,2],
     [2,1],
     [3,5],
@@ -10,6 +10,7 @@ const points = [
     [1,2],
     [4,1]
 ];
+points = require('../test/fixtures/arrayOfPoints');
 
 const renderPoints = () => {
     new Plot()
