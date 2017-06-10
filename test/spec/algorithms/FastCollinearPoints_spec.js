@@ -7,7 +7,7 @@ const FastCollinearPoints = require('../../../src/algorithms/FastCollinearPoints
 const arrayOfPoints = require('../../fixtures/arrayOfPoints');
 
 
-describe.only('Fast Colinear Points', () => {
+describe('Fast Colinear Points', () => {
 
     it('should find all of the colinear points in this array of arrays', () => {
     });

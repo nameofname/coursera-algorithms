@@ -88,4 +88,4 @@ const fastColinearPoints = (arrayOfPoints) => {
     return lineSegments;
 };
 
-modlue.exports = fastColinearPoints;
+module.exports = fastColinearPoints;

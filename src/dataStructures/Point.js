@@ -1,6 +1,6 @@
 "use strict";
 
-const Comparable = require('./Comparable');
+const { Comparable } = require('./Comparable');
 
 
 class Point extends Comparable {

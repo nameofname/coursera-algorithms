@@ -1,7 +1,8 @@
 "use strict";
 
+const assert = require('assert');
 const { exchange, less } = require('../helpers/sortingHelpers');
-const Comparable = require('./Comparable');
+const { Comparable } = require('./Comparable');
 
 const sink = (arr, k) => {
     while (2 * k <= arr.length) {
@@ -51,3 +52,6 @@ class MaxBinaryHeap {
         return this.arr[1];
     }
 }
+
+
+module.exports = MaxBinaryHeap;
