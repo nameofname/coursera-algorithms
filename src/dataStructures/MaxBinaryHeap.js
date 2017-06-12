@@ -4,23 +4,6 @@ const assert = require('assert');
 const { exchange, less } = require('../helpers/sortingHelpers');
 const { Comparable } = require('./Comparable');
 
-const sink = (arr, k) => {
-    while (2 * k <= arr.length) {
-        const greaterChild = less(arr[2 * k], arr[2 * k + 1]) ? (2 * k) : (2 * k + 1);
-        if (less(arr[k], arr[greaterChild])) {
-            exchange(arr, k, greaterChild);
-            k = greaterChild;
-        } else {
-            break;
-        }
-    }
-};
-const swim = (arr, k) => {
-    while (k > 1 && arr[k] > arr[Math.floor(k / 2)]) {
-        exchange(arr, k, Math.floor(k / 2));
-        k = Math.floor(k / 2);
-    }
-};
 
 class MaxBinaryHeap {
     constructor() {
@@ -38,19 +21,43 @@ class MaxBinaryHeap {
     insert(comparable) {
         assert(comparable instanceof Comparable);
         this.arr[this.arr.length] = comparable;
-        swim(this.arr, this.arr.length);
+        this._swim(this.arr, this.size());
     }
 
     delMax() {
-        exchange(this.arr, 1, this.arr.length);
-        const max = this.arr.pop();
-        sink(this.arr, 1);
-        return max;
+        assert(this.size());
+        exchange(this.arr, 1, this.arr.length - 1);
+        const out = this.arr.pop();
+        this._sink(this.arr, 1);
+        return out;
     }
 
     getMax() {
         return this.arr[1];
     }
+
+    _sink(arr, k) {
+        while (2 * k <= this.size()) {
+            let greaterChild = 2 * k;
+            if (arr[2 * k + 1]) {
+                greaterChild = less(arr[2 * k], arr[2 * k + 1]) ? (2 * k) : (2 * k + 1);
+            }
+            if (less(arr[k], arr[greaterChild])) {
+                exchange(arr, k, greaterChild);
+                k = greaterChild;
+            } else {
+                break;
+            }
+        }
+    }
+
+    _swim(arr, k) {
+        while (k > 1 && less(arr[Math.floor(k / 2)], arr[k])) {
+            exchange(arr, k, Math.floor(k / 2));
+            k = Math.floor(k / 2);
+        }
+    };
+
 }
 
 

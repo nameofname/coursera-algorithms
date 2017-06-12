@@ -24,10 +24,28 @@ describe.only('MaxBinaryHeap', () => {
         const h = new MaxBinaryHeap();
         expect(h.isEmpty()).to.equal(true);
         expect(h.size()).to.equal(0);
-        h.insert(new Comparable(1));
-        h.insert(new Comparable(2));
         h.insert(new Comparable(3));
+        h.insert(new Comparable(2));
+        h.insert(new Comparable(1));
+        // h.insert(new Comparable(1));
+        // h.insert(new Comparable(2));
+        // h.insert(new Comparable(3));
         expect(h.isEmpty()).to.equal(false);
         expect(h.size()).to.equal(3);
+        h.delMax();
+        h.delMax();
+        h.delMax();
+        expect(h.isEmpty()).to.equal(true);
+        expect(h.size()).to.equal(0);
     });
+
+    it('should return the highest entry in the array when calling delMax()', () => {
+        const h = new MaxBinaryHeap();
+        const highest = new Comparable(3);
+        h.insert(new Comparable(1));
+        h.insert(new Comparable(2));
+        h.insert(highest);
+        expect(h.delMax()).to.equal(highest);
+    });
+
 });
