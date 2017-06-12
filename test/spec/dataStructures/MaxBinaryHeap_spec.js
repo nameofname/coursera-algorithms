@@ -4,7 +4,7 @@
 const expect = require('chai').expect;
 const MaxBinaryHeap = require('../../../src/dataStructures/MaxBinaryHeap');
 const { Comparable } = require('../../../src/dataStructures/Comparable');
-let testArr = [1,2,3,5,6,8,7,5,6,7,4,5,8,9,1,4,7,9,5,3,7,90,91,97,98,95,97];
+let testArr = [1,2,3,5,6,8,7,5,6,7,4,5,8,9,1,4,7,9,5,3,7,90,91,97,99,95,97];
 testArr = testArr.map(val => new Comparable(val));
 
 
@@ -27,9 +27,6 @@ describe.only('MaxBinaryHeap', () => {
         h.insert(new Comparable(3));
         h.insert(new Comparable(2));
         h.insert(new Comparable(1));
-        // h.insert(new Comparable(1));
-        // h.insert(new Comparable(2));
-        // h.insert(new Comparable(3));
         expect(h.isEmpty()).to.equal(false);
         expect(h.size()).to.equal(3);
         h.delMax();
@@ -46,6 +43,17 @@ describe.only('MaxBinaryHeap', () => {
         h.insert(new Comparable(2));
         h.insert(highest);
         expect(h.delMax()).to.equal(highest);
+    });
+
+    it('should should correctly sort the entries in this long array, and find the higest entries.', () => {
+        const h = new MaxBinaryHeap();
+        const arr = [];
+        testArr.forEach(c => {
+            h.insert(c);
+        });
+        for (let i = 0; i < 6; i++) {
+            arr.push(h.delMax().value);
+        }
     });
 
 });

@@ -26,7 +26,7 @@ class MaxBinaryHeap {
 
     delMax() {
         assert(this.size());
-        exchange(this.arr, 1, this.arr.length - 1);
+        exchange(this.arr, 1, this.size());
         const out = this.arr.pop();
         this._sink(this.arr, 1);
         return out;
@@ -40,7 +40,7 @@ class MaxBinaryHeap {
         while (2 * k <= this.size()) {
             let greaterChild = 2 * k;
             if (arr[2 * k + 1]) {
-                greaterChild = less(arr[2 * k], arr[2 * k + 1]) ? (2 * k) : (2 * k + 1);
+                greaterChild = less(arr[2 * k], arr[2 * k + 1]) ? (2 * k + 1) : (2 * k);
             }
             if (less(arr[k], arr[greaterChild])) {
                 exchange(arr, k, greaterChild);
