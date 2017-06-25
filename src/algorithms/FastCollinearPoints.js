@@ -1,15 +1,15 @@
 "use strict";
 
 const Point = require('../dataStructures/Point');
-const { Comparable, Int } = require('../dataStructures/Comparable');
+const { Int } = require('../dataStructures/Comparable');
 const { less, greater } = require('../helpers/sortingHelpers');
 const MergeSort = require('./MergeSort');
 class SlopeComparable extends Int {
     constructor(value, point1, point2) {
+        super(value);
         this.value = value;
         this.point1 = point1;
         this.point2 = point2;
-        super(value);
     }
 }
 class Segment {
