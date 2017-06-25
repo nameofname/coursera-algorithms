@@ -8,7 +8,7 @@ let testArr = [1,2,3,5,6,8,7,5,6,7,4,5,8,9,1,4,7,9,5,3,7,90,91,97,99,95,97];
 testArr = testArr.map(val => new Comparable(val));
 
 
-describe.only('MaxBinaryHeap', () => {
+describe('MaxBinaryHeap', () => {
 
     it('should create an instance of MaxBinaryHeap with all the hawt methods', () => {
         const h = new MaxBinaryHeap();
