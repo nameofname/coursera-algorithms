@@ -4,8 +4,13 @@
 const expect = require('chai').expect;
 const BinarySearchTree = require('../../../src/dataStructures/BinarySearchTree');
 const { Int } = require('../../../src/dataStructures/Comparable');
-const testKeys = [ 13, 11, 32, 31, 13, 2, 20, 26, 4, 35, 4, 15, 17, 32, 18, 10, 26, 26, 5, 42 ]
-    .map(n => new Int(n));
+const testNums = [ 13, 11, 32, 31, 13, 2, 20, 26, 4, 35, 4, 15, 17, 32, 18, 10, 26, 26, 5, 42 ];
+const testKeys = testNums.map(n => new Int(n));
+const uniqueKeyNumber = testNums
+    .reduce((prev, curr) => {
+        return prev.includes(curr) ? prev : prev.concat([curr]);
+    }, [])
+    .length;
 const valueIfy = int => `test value : ${int.value}`;
 
 
@@ -39,7 +44,7 @@ describe.only('BinarySearchTree', () => {
         testKeys.forEach(key => {
             bst.put(key, valueIfy(key));
         });
-        expect(bst.root.count).to.equal(20); // eh ? 19 ?
+        expect(bst.root.count).to.equal(uniqueKeyNumber);
     });
 
 });

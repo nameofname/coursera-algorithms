@@ -59,7 +59,8 @@ class BinarySearchTree {
         } else { // IF key is the same, you are just over-riding the value
             node.value = value;
         }
-        node.count = this._size(node.left) + this._size(node.right);
+        // size = one for the node itself, then the size of left and right sub-trees
+        node.count = 1 + this._size(node.left) + this._size(node.right);
         return node;
     }
 
