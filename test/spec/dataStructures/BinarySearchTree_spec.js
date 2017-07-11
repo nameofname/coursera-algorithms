@@ -47,4 +47,13 @@ describe.only('BinarySearchTree', () => {
         expect(bst.root.count).to.equal(uniqueKeyNumber);
     });
 
+    it('should be able to find the floor given a comparable K', () => {
+        const bst = new BinarySearchTree();
+        const K = new Int(21);
+        testKeys.forEach(key => {
+            bst.put(key, valueIfy(key));
+        });
+        expect(bst.floor(K)).to.equal(20);
+    });
+
 });

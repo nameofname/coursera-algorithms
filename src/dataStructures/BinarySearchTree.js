@@ -43,6 +43,14 @@ class BinarySearchTree {
         return this._size(this.root);
     }
 
+    // Ordered Operations :
+
+    // Calculate the largest key less than or equal to K
+    floor(K) {
+        const floor = this._floor(this.root, K);
+        return floor === null ? null : floor.key;
+    }
+
     _size(node) {
         return node ? node.count : 0;
     }
@@ -94,6 +102,27 @@ class BinarySearchTree {
             }
             return null;
         }
+    }
+
+    _floor(node, K) {
+        if (node === null) {
+            return null;
+        }
+        const comparison = node.key.compareTo(K);
+        // if the current node is equal to K, then the current node is the floor
+        if (comparison === 0) {
+            return node;
+
+            // if the current node is greater than K, then we haven't found a node greater than K yet, keep going left
+        } else if (comparison < 0) {
+            return this._floor(node.left, K);
+        }
+
+        // if the current node is less than K, then it might be the root - or the root might be in the right subtree.
+        // in this case, we find the floor in the right subtree.
+        // ie. the floor can't be less (left) than this node, but it could be higher (right).
+        const rightFloor = this._floor(node.right);
+        return (rightFloor instanceof Node) ? rightFloor : node;
     }
 }
 
