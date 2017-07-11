@@ -9,14 +9,14 @@ class Node {
         assert(key instanceof Comparable, 'Invalid key provided to Node - must be an instance of Comparable');
         this.key = key;
         this.value = value;
-        this.left = left || null;
-        this.right = right || null;
+        this.left = left || undefined;
+        this.right = right || undefined;
         this.count = count || 0;
     }
 }
 class BinarySearchTree {
     constructor() {
-        this.root = null;
+        this.root = undefined;
     }
 
     // insert
@@ -48,7 +48,7 @@ class BinarySearchTree {
     // Calculate the largest key less than or equal to K
     floor(K) {
         const floor = this._floor(this.root, K);
-        return floor === null ? null : floor.key;
+        return floor === undefined ? undefined : floor.key;
     }
 
     _size(node) {
@@ -56,7 +56,7 @@ class BinarySearchTree {
     }
 
     _put(node, key, value) {
-        if (node === null) {
+        if (node === undefined) {
             return new Node({ key, value, count: 1 });
         }
         const comparison = key.compareTo(node.key);
@@ -74,8 +74,8 @@ class BinarySearchTree {
 
     // This is my own recursive implementation
     _search(node, key) {
-        if (node === null) {
-            return null;
+        if (node === undefined) {
+            return undefined;
         }
         const comparison = key.compareTo(node.key);
 
@@ -91,7 +91,7 @@ class BinarySearchTree {
     // This is the recommended implementation of search done using a while loop and not recursion
     _searchWithWhile(key) {
         let node = this.root;
-        while (node !== null) {
+        while (node !== undefined) {
             const comparison = key.compareTo(node.key);
             if (comparison < 0) {
                 node = node.left;
@@ -100,28 +100,28 @@ class BinarySearchTree {
             } else {
                 return node;
             }
-            return null;
+            return undefined;
         }
     }
 
     _floor(node, K) {
-        if (node === null) {
-            return null;
-        }
+        // if (node === undefined) {
+        //     return undefined;
+        // }
         const comparison = node.key.compareTo(K);
         // if the current node is equal to K, then the current node is the floor
         if (comparison === 0) {
             return node;
 
             // if the current node is greater than K, then we haven't found a node greater than K yet, keep going left
-        } else if (comparison < 0) {
-            return this._floor(node.left, K);
+        } else if (comparison > 0) {
+            return (node.left instanceof Node) ? this._floor(node.left, K) : node;
         }
 
         // if the current node is less than K, then it might be the root - or the root might be in the right subtree.
         // in this case, we find the floor in the right subtree.
         // ie. the floor can't be less (left) than this node, but it could be higher (right).
-        const rightFloor = this._floor(node.right);
+        const rightFloor = (node.right instanceof Node) ? this._floor(node.right, K) : undefined;
         return (rightFloor instanceof Node) ? rightFloor : node;
     }
 }
